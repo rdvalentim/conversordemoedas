@@ -1,6 +1,7 @@
+#ALUNOS EDERSON SCHULZE E RAMON VALENTIM
+
 import requests
 
-# Função para obter taxa de câmbio da API
 def obter_taxa_de_cambio(moeda_origem: str, moeda_destino: str) -> float:
     try:
         response = requests.get(f"https://api.exchangerate-api.com/v4/latest/{moeda_origem}")
@@ -11,7 +12,6 @@ def obter_taxa_de_cambio(moeda_origem: str, moeda_destino: str) -> float:
         print("Erro ao obter taxa de câmbio:", e)
         return None
 
-# Função pura para converter o valor
 def converter_valor(valor: float, taxa: float) -> float:
     return round(valor * taxa, 2)
 
