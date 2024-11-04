@@ -31,11 +31,11 @@ def conversor():
     moedas = ["USD", "BRL", "EUR", "JPY", "GBP"]  # lista simplificada de moedas
     print("Conversor de Moedas")
     
-    # Entrada do usuário
+    # Inserir o valor
     valor = input("Digite o valor para converter: ")
     valor = validar_entrada(valor)
     if valor is None:
-        return  # encerra se o valor não for válido
+        return  
     
     print("Moedas disponíveis:", moedas)
     moeda_origem = input("Escolha a moeda de origem: ").upper()
