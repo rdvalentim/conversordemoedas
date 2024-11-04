@@ -1,4 +1,4 @@
-#ALUNOS EDERSON SCHULZE E RAMON VALENTIM
+# Alunos Ederson Schulze e Ramon Valentim
 
 import requests
 
@@ -15,7 +15,7 @@ def obter_taxa_de_cambio(moeda_origem: str, moeda_destino: str) -> float:
 def converter_valor(valor: float, taxa: float) -> float:
     return round(valor * taxa, 2)
 
-# Função de validação de entrada
+# Função de validação de entrada para valores individuais
 def validar_entrada(valor: str) -> float:
     try:
         valor_float = float(valor)
@@ -26,16 +26,28 @@ def validar_entrada(valor: str) -> float:
         print(f"Entrada inválida: {e}")
         return None
 
+# Função de validação para uma lista de valores
+def validar_lista_entradas(valores: list) -> list:
+    valores_float = []
+    for valor in valores:
+        valor_validado = validar_entrada(valor)
+        if valor_validado is not None:
+            valores_float.append(valor_validado)
+        else:
+            print(f"Valor '{valor}' ignorado por ser inválido.")
+    return valores_float
+
 # Função para exibir opções e realizar a conversão
 def conversor():
-    moedas = ["USD", "BRL", "EUR", "JPY", "GBP"]  # lista simplificada de moedas
+    moedas = ["USD", "BRL", "EUR", "JPY", "GBP"]  # lista das moedas
     print("Conversor de Moedas")
     
-    # Inserir o valor
-    valor = input("Digite o valor para converter: ")
-    valor = validar_entrada(valor)
-    if valor is None:
-        return  
+    # Inserir o valor ou lista de valores
+    valores = input("Digite os valores para converter (separados por vírgula): ").split(',')
+    valores = validar_lista_entradas(valores)
+    if not valores:
+        print("Nenhum valor válido inserido.")
+        return
     
     print("Moedas disponíveis:", moedas)
     moeda_origem = input("Escolha a moeda de origem: ").upper()
@@ -46,15 +58,16 @@ def conversor():
         print("Moeda inválida. Escolha uma das opções disponíveis.")
         return
 
-    # Obter a taxa de câmbio
+    # Obtem a taxa de câmbio
     taxa = obter_taxa_de_cambio(moeda_origem, moeda_destino)
     if taxa is None:
         print("Erro ao obter a taxa de câmbio.")
         return
 
-    # Converter e exibir o valor
-    valor_convertido = converter_valor(valor, taxa)
-    print(f"{valor} {moeda_origem} é equivalente a {valor_convertido} {moeda_destino}")
+    # Converter e exibir os valores
+    valores_convertidos = converter_lista_valores(valores, taxa)
+    for i, valor_convertido in enumerate(valores_convertidos):
+        print(f"{valores[i]} {moeda_origem} é equivalente a {valor_convertido} {moeda_destino}")
 
 # Função de ordem superior para converter uma lista de valores usando map
 def converter_lista_valores(valores: list, taxa: float):
