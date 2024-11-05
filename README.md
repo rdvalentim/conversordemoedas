@@ -16,4 +16,4 @@ Este projeto é um conversor de moedas desenvolvido em Python, com o objetivo de
 `Reutilização de Código:` As funções para validação, obtenção de taxa de câmbio e conversão são projetadas para serem reutilizáveis, promovendo modularidade e manutenibilidade. <br>
 
 ## Como rodar a aplicação
-- Para rodar a aplicação você deve estar na pasta do reposit;orio e digitar "python converson.py"
+- Para rodar a aplicação você deve estar na pasta do repositório e digitar "python converson.py"
