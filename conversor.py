@@ -38,7 +38,7 @@ def validar_lista_entradas(valores: list) -> list:
     return valores_float
 
 # Função para exibir opções e realizar a conversão
-def conversor():
+def conversor(valor, moeda_origem, moeda_destino):
     moedas = ["USD", "BRL", "EUR", "JPY", "GBP"]  # lista das moedas
     print("Conversor de Moedas")
     
